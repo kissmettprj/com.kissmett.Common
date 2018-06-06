@@ -1,0 +1,5 @@
+C:\ws\lnv\pn\sharefoldernew\com.kissmett.Common\obj\Release\ResolveAssemblyReference.cache
+C:\ws\lnv\pn\sharefoldernew\com.kissmett.Common\bin\Release\com.kissmett.Common.dll
+C:\ws\lnv\pn\sharefoldernew\com.kissmett.Common\bin\Release\com.kissmett.Common.pdb
+C:\ws\lnv\pn\sharefoldernew\com.kissmett.Common\obj\Release\com.kissmett.Common.dll
+C:\ws\lnv\pn\sharefoldernew\com.kissmett.Common\obj\Release\com.kissmett.Common.pdb
