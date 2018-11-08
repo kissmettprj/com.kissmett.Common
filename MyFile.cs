@@ -75,7 +75,8 @@ namespace com.kissmett.Common
                 List<string> files = new List<string>(Directory.GetFiles(sourcePath));
                 files.ForEach(c =>
                 {
-                    string destFile = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    //string destFile = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    string destFile = Path.Combine( destPath, Path.GetFileName(c) );
                     //覆盖模式
                     if (File.Exists(destFile))
                     {
@@ -88,7 +89,8 @@ namespace com.kissmett.Common
 
                 folders.ForEach(c =>
                 {
-                    string destDir = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    //string destDir = Path.Combine(new string[] { destPath, Path.GetFileName(c) });
+                    string destDir = Path.Combine( destPath, Path.GetFileName(c) );
                     //Directory.Move必须要在同一个根目录下移动才有效，不能在不同卷中移动。
                     //Directory.Move(c, destDir);
 
@@ -144,6 +146,28 @@ namespace com.kissmett.Common
             //释放对象
             file.Dispose();
            
+        }
+
+
+        //读取txt文件中总行数的方法
+        public static int getTxtFileLineCount(string fileName)
+        {
+
+            var path = fileName;
+            int lines = 0;
+
+            //按行读取
+          
+            using (var sr = new StreamReader(path))
+            {
+                var ls = "";
+                while ((ls = sr.ReadLine()) != null)
+                {
+                    lines++;
+                }
+            }
+       
+            return lines;
         }
 
     }
