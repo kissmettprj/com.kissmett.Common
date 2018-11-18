@@ -3,12 +3,41 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using System.Collections;
 using System.IO;
 
 namespace com.kissmett.Common
 {
     public class MyFile
     {
+
+        /*
+         * ext: ".pdf"
+         */
+        public static  void DeleteFileByExt(string path,string ext)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+            System.Collections.Stack s = new Stack();
+            s.Push(di);
+            DirectoryInfo[] dii = di.GetDirectories("*", SearchOption.AllDirectories);
+            foreach (DirectoryInfo dix in dii)
+            {
+                s.Push(dix);
+            }
+            while (0 != s.Count)
+            {
+                DirectoryInfo dixx = (DirectoryInfo)s.Pop();
+                FileInfo[] fi = dixx.GetFiles();
+                foreach (FileInfo xx in fi)
+                {
+                    if (xx.Extension == ext )
+                    {
+                        File.Delete(path+@"\" + xx);
+                    }
+                }
+            }
+        }
+
         public static void DeleteFile(string srcFilePath)
         {
             if (!File.Exists(srcFilePath)) return;
