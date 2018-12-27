@@ -10,6 +10,8 @@ using System.Globalization;
 
 using System.Diagnostics;
 
+using System.Security.Cryptography;
+
 //using System.Web;
 //using System.Web.SessionState;
 
@@ -22,6 +24,85 @@ namespace com.kissmett.Common
 	/// <remarks>gwd, 2004-04-12</remarks>
 	public sealed class Functions
 	{
+
+        //输入密码
+        public static string InputPassword()
+        {
+            string password = "";
+            while (true)
+            {
+                //存储用户输入的按键，并且在输入的位置不显示字符
+                ConsoleKeyInfo ck = Console.ReadKey(true);
+
+                //判断用户是否按下的Enter键
+                if (ck.Key != ConsoleKey.Enter)
+                {
+                    if (ck.Key != ConsoleKey.Backspace)
+                    {
+                        //将用户输入的字符存入字符串中
+                        password += ck.KeyChar.ToString();
+                        //将用户输入的字符替换为*
+                        Console.Write("*");
+                    }
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(password) && password.Length >= 1)
+                        {
+                            password = password.Remove(password.Length - 1, 1);
+                        }
+                        //删除错误的字符
+                        Console.Write("\b \b");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine();
+
+                    break;
+                }
+            }
+            return password;
+        }
+
+        public static string GetMD5(string myString)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = System.Text.Encoding.Unicode.GetBytes(myString);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+            }
+
+            return byte2String;
+        }
+
+
+        /// <summary>
+        /// 用MD5加密字符串，可选择生成16位或者32位的加密字符串
+        /// </summary>
+        /// <param name="password">待加密的字符串</param>
+        /// <param name="bit">位数，一般取值16 或 32</param>
+        /// <returns>返回的加密后的字符串</returns>
+        public static string MD5Encrypt(string password, int bit)
+        {
+            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+            byte[] hashedDataBytes;
+            hashedDataBytes = md5Hasher.ComputeHash(Encoding.GetEncoding("gb2312").GetBytes(password));
+            StringBuilder tmp = new StringBuilder();
+            foreach (byte i in hashedDataBytes)
+            {
+                tmp.Append(i.ToString("x2"));
+            }
+            if (bit == 16)
+                return tmp.ToString().Substring(8, 16);
+            else
+                if (bit == 32) return tmp.ToString();//默认情况
+                else return string.Empty;
+        }
+
 	
 		/// <summary>
 		/// Since this class provides only static methods, make the default constructor private to prevent 
