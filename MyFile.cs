@@ -199,5 +199,24 @@ namespace com.kissmett.Common
             return lines;
         }
 
+        public static long getFileLenth(string filepath)
+        {
+            long res = 0;
+            System.IO.FileInfo fileInfo = null;
+            try
+            {
+                fileInfo = new System.IO.FileInfo(filepath);
+            }
+            catch (Exception e)
+            {
+               
+            }
+            if (fileInfo != null && fileInfo.Exists)
+            {
+                res = fileInfo.Length;
+            }
+            return res;
+        }
+
     }
 }

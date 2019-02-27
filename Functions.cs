@@ -924,7 +924,17 @@ namespace com.kissmett.Common
             }
         }
         return output;
-    } 
+    }
+
+    public static string ConvertStrArr2Str(string[] strs, string seperator=",") {
+        string res="";
+        foreach (string s in strs)
+        {
+            res += s + seperator;
+        }
+            
+        return res;
+    }
 
     
     }  

@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>com.kissmett.Common</RootNamespace>
     <AssemblyName>com.kissmett.Common</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -42,6 +42,9 @@
     <Reference Include="O2S.Components.PDFRender4NET">
       <HintPath>..\libs\O2S.Components.PDFRender4NET.dll</HintPath>
     </Reference>
+    <Reference Include="SharpCompress">
+      <HintPath>..\libs\SharpCompress.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -61,8 +64,11 @@
     <Compile Include="Base64.cs" />
     <Compile Include="Code39.cs" />
     <Compile Include="CommonDAL.cs" />
+    <Compile Include="FTPHelper.cs" />
     <Compile Include="HttpService.cs" />
     <Compile Include="MyURL.cs" />
+    <Compile Include="MyZip.cs" />
+    <Compile Include="ProcessHelpher.cs" />
     <Compile Include="WebControlHelper.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Globals.cs" />
